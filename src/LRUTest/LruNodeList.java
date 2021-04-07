@@ -49,6 +49,9 @@ public class LruNodeList<T> {
         first.next=last;
         last.pre=first;
         this.residuesize=this.size;
+
+        map=new HashMap<>();
+
     }
 
     public int size(){
