@@ -27,6 +27,7 @@ public class LruNodeList<T> {
             LruNode newNode=new LruNode(key,value);
             moveLruNode(node);
             insertFirst(newNode);
+            map.put(key,newNode);
         }else{
            if((size-map.size())>0){
                LruNode newNode=new LruNode(key,value);
