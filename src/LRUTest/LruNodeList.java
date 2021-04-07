@@ -13,7 +13,7 @@ public class LruNodeList<T> {
     public LruNode getLruNode(String key){
         if(map.containsKey(key)){
             LruNode node=map.get(key);
-            moveLruNode(node);
+            removeLruNode(node);
             insertFirst(node);
             return  node;
         }else{
@@ -25,7 +25,7 @@ public class LruNodeList<T> {
         if(map.containsKey(key)){
             LruNode node=map.get(key);
             LruNode newNode=new LruNode(key,value);
-            moveLruNode(node);
+            removeLruNode(node);
             insertFirst(newNode);
             map.put(key,newNode);
         }else{
@@ -35,7 +35,7 @@ public class LruNodeList<T> {
                map.put(key,newNode);
            }else{
                LruNode lastLruNode=last.pre;
-               moveLruNode(lastLruNode);
+               removeLruNode(lastLruNode);
                LruNode newNode=new LruNode(key,value);
                insertFirst(newNode);
                map.put(key,newNode);
@@ -66,7 +66,7 @@ public class LruNodeList<T> {
         this.size=size;
     }
 
-    private void moveLruNode(LruNode node){
+    public void removeLruNode(LruNode node){
         node.next.pre=node.pre;
         node.pre.next=node.next;
     }
