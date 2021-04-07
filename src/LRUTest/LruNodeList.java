@@ -82,4 +82,11 @@ public class LruNodeList<T> {
         return first;
     }
 
+    public LruNode<T> getLast() {
+        return last;
+    }
+
+    public void setLast(LruNode<T> last) {
+        this.last = last;
+    }
 }

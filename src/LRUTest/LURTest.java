@@ -25,7 +25,9 @@ public class LURTest {
             System.out.println("ket:"+k+",value:"+v);
             forNode=forNode.next;
         }
-
+        System.out.println((list.getFirst().next==list.getLast())+"");
+        list.clear();
+        System.out.println((list.getFirst().next==list.getLast())+"");
 
     }
 
