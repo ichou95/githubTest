@@ -7,7 +7,7 @@ public class LruNodeList<T> {
     private Map<String,LruNode> map =new HashMap<>();
     private LruNode<T> first;
     private LruNode<T> last;
-    private int residuesize;
+
     private int size;
 
     public LruNode getLruNode(String key){
@@ -28,11 +28,10 @@ public class LruNodeList<T> {
             moveLruNode(node);
             insertFirst(newNode);
         }else{
-           if(residuesize>0){
+           if((size-map.size())>0){
                LruNode newNode=new LruNode(key,value);
                insertFirst(newNode);
                map.put(key,newNode);
-               residuesize--;
            }else{
                LruNode lastLruNode=last.pre;
                moveLruNode(lastLruNode);
@@ -48,14 +47,12 @@ public class LruNodeList<T> {
 
         first.next=last;
         last.pre=first;
-        this.residuesize=this.size;
-
         map=new HashMap<>();
 
     }
 
     public int size(){
-        return this.size-this.residuesize;
+        return this.map.size();
     }
 
     public LruNodeList(int size) {
@@ -66,7 +63,6 @@ public class LruNodeList<T> {
         first.next=last;
         last.pre=first;
         this.size=size;
-        this.residuesize=size;
     }
 
     private void moveLruNode(LruNode node){
